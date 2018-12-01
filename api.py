@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-import get
+import src.get as get
 from flask_cors import CORS
 import os
 
