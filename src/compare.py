@@ -14,6 +14,7 @@ from nltk.tokenize import TreebankWordTokenizer
 from nltk.stem import SnowballStemmer
 import nltk.data
 
+from network import download
 from ssk import SSK
 
 
@@ -51,12 +52,25 @@ def readfile(file, debug=False):
         pass
 
 
+def downloadfile(url, debug=False):
+    data = download(url)
+    try:
+        if url.endswith('.txt'):
+            return data.decode('utf-8')
+        elif url.endswith('.pdf'):
+            return decodepdf(BytesIO(data), debug=debug)
+    except KeyboardInterrupt:
+        raise
+    except:
+        pass
+
+
 words_cache = {}
 
 
-def getwords(text, langs=("english", "russian"), debug=False):
+def getwords(text, langs=["english", "russian"], debug=False):
     key = (text, tuple(langs))
-    if key in words_cache:
+    if (key in words_cache):
         if debug: print("found words in cache")
         return words_cache[key]
     punct = re.compile('[%s0-9\–]' % re.escape(string.punctuation))
@@ -106,7 +120,7 @@ def getkeywords(text, langs=["english", "russian"], num=10, debug=False):
     return words
 
 
-def evaluate(text1, text2, langs=("english", "russian"), debug=False):
+def evaluate(text1, text2, langs=["english", "russian"], debug=False):
     text1 = getwords(text1, langs=langs, debug=debug)
     text2 = getwords(text2, langs=langs, debug=debug)
 
@@ -123,5 +137,3 @@ def evaluate(text1, text2, langs=("english", "russian"), debug=False):
                 blocks.append((res, s, t))
 
     return blocks
-if __name__ == "__main__":
-    evaluate("hi i have no friends", "I do not have any friends")
