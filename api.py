@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-from flask import send_file
+import get
 from flask_cors import CORS
 import os
 
@@ -10,7 +10,9 @@ CORS(app)
 
 @app.route("/")
 def main():
-    return "Testing from news visualizer API"
+    topic = request.args.get('topic')
+    articles = get.get_news(topic)
+    return "<br>".join(articles)
 
 
 if __name__ == "__main__":
