@@ -14,8 +14,7 @@ from nltk.tokenize import TreebankWordTokenizer
 from nltk.stem import SnowballStemmer
 import nltk.data
 
-from network import download
-from ssk import SSK
+from functions import SSK
 
 
 def timestr():
@@ -68,7 +67,7 @@ def downloadfile(url, debug=False):
 words_cache = {}
 
 
-def getwords(text, langs=["english", "russian"], debug=False):
+def getwords(text, langs=("english", "russian"), debug=False):
     key = (text, tuple(langs))
     if (key in words_cache):
         if debug: print("found words in cache")

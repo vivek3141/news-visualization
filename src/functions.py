@@ -1,7 +1,9 @@
-#! /usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import math
+
+
+def l_print(li):
+    for i in li:
+        print(i)
 
 
 class SSK:
