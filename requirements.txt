@@ -1,3 +1,6 @@
 flask
 flask-cors
 newsapi-python
+nltk
+newspaper3k
+pdfminer3k
