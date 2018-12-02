@@ -22,7 +22,7 @@ def get_news(topic):
         article.parse()
         text.append(article.text)
         keywords.append(getkeywords(text[i]))
-        ret_text += url[i] + "<br>"
+        ret_text += title[i] + "<br>"
     comparisons = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
     for num1, i in enumerate(keywords):
         for string in i:
