@@ -159,8 +159,17 @@ function get_values(topic) {
         textt = request.responseText;
         list = textt.split("<br>");
         news = list.slice(0, 5);
+        if(topic === ""){
+            topic = "Relevant News"
+        }
         news.push(topic);
         connec = list.slice(5,9);
+        urls = list.slice(10);
+        for(mkmk=0; mkmk<5; mkmk++){
+            console.log(mkmk);
+            document.getElementById(mkmk.toString()).innerHTML = news[mkmk];
+            document.getElementById(mkmk.toString()).href = urls[mkmk];
+        }
     };
     setup_2();
 }
