@@ -167,9 +167,9 @@ function get_values(topic) {
     };
     setup_2();
 }
-const button = document.getElementById("submit");
-const text = document.getElementById("text");
-button.addEventListener("click", e => {
-    var topic = text.innerText;
-    get_values(topic);
-});
+//const button = document.getElementById("submit");
+//const text = document.getElementById("text");
+//button.addEventListener("click", e => {
+ //   var topic = text.innerText;
+  //  get_values(topic);
+//});
