@@ -36,6 +36,8 @@ def get_news(topic):
                 similarities[num1].append(num2)
     for i in similarities:
         ret_text += str(i)[1:-1] + "<br>"
+    for i in text:
+        ret_text += i + "<br>"
     return ret_text
 
 
