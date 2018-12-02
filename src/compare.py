@@ -14,7 +14,7 @@ from nltk.tokenize import TreebankWordTokenizer
 from nltk.stem import SnowballStemmer
 import nltk.data
 
-from functions import SSK
+from src.functions import SSK
 
 
 def timestr():

@@ -1,6 +1,5 @@
 from newsapi import NewsApiClient
-from functions import *
-from compare import getkeywords
+from src.compare import getkeywords
 from newspaper import Article
 
 API_KEY = "2cce71b97f664724b621d4e37e113009"
