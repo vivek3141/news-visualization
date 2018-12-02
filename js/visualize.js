@@ -107,7 +107,6 @@ function drawLines(x, y, connec) {
 
 function draw() {
     background(255);
-    drawGrid();
     translate(400, 200);
     for (i = 0; i < news.length; i++) {
         //Text size of the word depeding on importance
@@ -168,3 +167,9 @@ function get_values(topic) {
     };
     setup_2();
 }
+const button = document.getElementById("submit");
+const text = document.getElementById("text");
+button.addEventListener("click", e => {
+    var topic = text.innerText;
+    get_values(topic);
+});
