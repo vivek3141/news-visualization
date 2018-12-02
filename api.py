@@ -12,7 +12,7 @@ CORS(app)
 def main():
     topic = request.args.get('topic')
     articles = get.get_news(topic)
-    return "<br>".join(articles)
+    return articles
 
 
 if __name__ == "__main__":

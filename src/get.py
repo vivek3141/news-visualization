@@ -14,15 +14,31 @@ def get_news(topic):
     url = []
     text = []
     keywords = []
+    ret_text = ""
     for i in range(0, 5):
         title.append(articles[i]['title'])
         url.append(articles[i]['url'])
-        article = Article(url[0])
+        article = Article(url[i])
         article.download()
         article.parse()
         text.append(article.text)
-        keywords.append(getkeywords(text[0]))
+        keywords.append(getkeywords(text[i]))
+        ret_text += url[i] + "<br>"
+    comparisons = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+    for num1, i in enumerate(keywords):
+        for string in i:
+            for num, k in enumerate(keywords):
+                if string in k:
+                    comparisons[num1][num] += 1
+    similarities = [[], [], [], [], []]
+    for num1, i in enumerate(comparisons):
+        for num2, k in enumerate(i):
+            if k > 1 and num2 != num1:
+                similarities[num1].append(num2)
+    for i in similarities:
+        ret_text += str(i)[1:-1] + "<br>"
+    return ret_text
 
 
 if __name__ == '__main__':
-    get_news("trump")
+    print(get_news("trump"))
