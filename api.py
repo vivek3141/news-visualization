@@ -3,9 +3,12 @@ from flask import request
 import src.get as get
 from flask_cors import CORS
 import os
+import nltk
 
 app = Flask(__name__)
 CORS(app)
+
+nltk.download('stopwords')
 
 
 @app.route("/")
