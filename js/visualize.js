@@ -1,3 +1,4 @@
+
 function drawGrid() {
     textSize(11);
     fill(120);
@@ -14,7 +15,7 @@ function drawGrid() {
 var list;
 const canvasXsize = 1480;
 const canvasYsize = 19 * 40;
-
+var topic = "";
 var x = [0, 0, 0, 0, 0, 400];
 var y = [0, 0, 0, 0, 0, 250];
 
@@ -36,8 +37,8 @@ function init(xSpeed, ySpeed, x, y) {
     for (z = 0; z < x.length - 1; z++) {
         x[z] = Math.floor(Math.random() * 400 + 200);
         y[z] = Math.floor(Math.random() * 400 + 100);
-        xSpeed[z] = Math.ceil(Math.random() * 5);
-        ySpeed[z] = Math.ceil(Math.random() * 5);
+        xSpeed[z] = Math.ceil(Math.random() * 3);
+        ySpeed[z] = Math.ceil(Math.random() * 3);
     }
 
     return (xSpeed, ySpeed, x, y);
@@ -54,16 +55,16 @@ function move(x, y, xSpeed, ySpeed) {
 function checkHit(x, y, xSpeed, ySpeed) {
     for (z = 0; z < x.length; z++) {
         if (y[z] > 500) {
-            ySpeed[z] = -Math.ceil(Math.random() * 5);
+            ySpeed[z] = -Math.ceil(Math.random() * 3);
         }
         if (y[z] < 0) {
-            ySpeed[z] = Math.ceil(Math.random() * 5);
+            ySpeed[z] = Math.ceil(Math.random() * 3);
         }
         if (x[z] > 600) {
-            xSpeed[z] = -Math.ceil(Math.random() * 5);
+            xSpeed[z] = -Math.ceil(Math.random() * 3);
         }
         if (x[z] < 0) {
-            xSpeed[z] = Math.ceil(Math.random() * 5);
+            xSpeed[z] = Math.ceil(Math.random() * 3);
         }
     }
     return (xSpeed, ySpeed)
@@ -73,17 +74,14 @@ function checkHit(x, y, xSpeed, ySpeed) {
 var connec;
 
 function setup_2() {
-    rel = [3, 4, 5, 6, 10];
     xSpeed, ySpeed, x, y = init(xSpeed, ySpeed, x, y);
 }
 
 function setup() {
     createCanvas(canvasXsize, canvasYsize);
-    l = get_values("trump");
-    console.log("hi");
-    console.log(l);
+    l = get_values(topic);
     news = ["", "", "", "", "", 'Loading'];
-    rel = [3, 4, 5, 6, 10, 20];
+    rel = [2, 3, 4, 5, 6, 20];
     connec = [];
     xSpeed, ySpeed, x, y = init(xSpeed, ySpeed, x, y);
 }
@@ -96,7 +94,7 @@ function drawLines(x, y, connec) {
             nums.push(parseInt(strs[o]));
         }
         for (k = 0; k < nums.length; k++) {
-            if (!isNaN(nums[k])) {
+            if (!isNaN(nums[k]) || !isNaN(n)) {
                 line(x[n], y[n], x[nums[k]], y[nums[k]]);
             }
         }
@@ -107,7 +105,7 @@ function drawLines(x, y, connec) {
 
 function draw() {
     background(255);
-    translate(400, 200);
+    translate(650, 100);
     for (i = 0; i < news.length; i++) {
         //Text size of the word depeding on importance
         let size = rel[i] * 5;
@@ -158,18 +156,18 @@ function get_values(topic) {
     request.open("GET", endpoint, true);
     request.send(null);
     request.onreadystatechange = function () {
-        if (request.readyState == 4)
-            text = request.responseText;
-        list = text.split("<br>");
+        textt = request.responseText;
+        list = textt.split("<br>");
         news = list.slice(0, 5);
         news.push(topic);
-        connec = list.slice(5);
+        connec = list.slice(5,9);
     };
     setup_2();
 }
-//const button = document.getElementById("submit");
-//const text = document.getElementById("text");
-//button.addEventListener("click", e => {
- //   var topic = text.innerText;
-  //  get_values(topic);
-//});
+let thebuttonthingy = document.getElementById("submit");
+let thetexthingy = document.getElementById("text");
+thebuttonthingy.addEventListener("click", e => {
+    topic = thetexthingy.value;
+    console.log(topic);
+    setup();
+});
