@@ -1,4 +1,3 @@
-
 function drawGrid() {
     textSize(11);
     fill(120);
@@ -98,17 +97,18 @@ function drawLines(x, y, connec) {
                 line(x[n], y[n], x[nums[k]], y[nums[k]]);
             }
         }
-        line(x[n],y[n], x[5],y[5]);
+        line(x[n], y[n], x[5], y[5]);
         nums = [];
     }
 }
+
 var counterthingy1000 = 0;
-function mouseClicked(){
-    if(counterthingy1000 === 0){
+
+function mouseClicked() {
+    if (counterthingy1000 === 0) {
         frameRate(0);
         counterthingy1000 = 1;
-    }
-    else{
+    } else {
         counterthingy1000 = 0;
         frameRate(60);
     }
@@ -142,7 +142,7 @@ function draw() {
 }
 
 function get_values(topic) {
-    var endpoint = "https://news-visual.herokuapp.com/?topic=" + topic;
+    var endpoint = "http://news-visual.herokuapp.com/?topic=" + topic;
 
     var text;
 
@@ -170,13 +170,13 @@ function get_values(topic) {
         textt = request.responseText;
         list = textt.split("<br>");
         news = list.slice(0, 5);
-        if(topic === ""){
+        if (topic === "") {
             topic = "Relevant News"
         }
         news.push(topic);
-        connec = list.slice(5,10);
+        connec = list.slice(5, 10);
         urls = list.slice(10);
-        for(mkmk=0; mkmk<5; mkmk++){
+        for (mkmk = 0; mkmk < 5; mkmk++) {
             console.log(mkmk);
             document.getElementById(mkmk.toString()).innerHTML = news[mkmk];
             document.getElementById(mkmk.toString()).href = urls[mkmk];
@@ -184,6 +184,7 @@ function get_values(topic) {
     };
     setup_2();
 }
+
 let thebuttonthingy = document.getElementById("submit");
 let thetexthingy = document.getElementById("text");
 thebuttonthingy.addEventListener("click", e => {

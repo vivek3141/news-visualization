@@ -13,9 +13,12 @@ nltk.download('stopwords')
 
 @app.route("/")
 def main():
-    topic = request.args.get('topic')
-    articles = get.get_news(topic)
-    return articles
+    try:
+        topic = request.args.get('topic')
+        articles = get.get_news(topic)
+        return articles
+    except:
+        return "No Articles Found"
 
 
 if __name__ == "__main__":
