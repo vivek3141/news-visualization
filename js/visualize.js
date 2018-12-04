@@ -142,7 +142,7 @@ function draw() {
 }
 
 function get_values(topic) {
-    var endpoint = "http://news-visual.herokuapp.com/?topic=" + topic;
+    var endpoint = "https://news-visual.herokuapp.com/?topic=" + topic;
 
     var text;
 
