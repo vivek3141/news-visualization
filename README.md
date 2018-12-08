@@ -21,3 +21,15 @@ NOTE: Superuser is only required if python is stored in `/usr/local`.
 * `Newsapi`, `Newspaper3k` for getting the news and parsing.
 ## Results
 <img src="https://raw.githubusercontent.com/vivek3141/news-visualization/master/img/news.png"></img>
+## Running it locally
+You can change the host in `api.py` and change the address in `visualize.js`.<br>
+For example, `api.py` by default will run on `0.0.0.0` on port `5000`. Changing 
+```js
+var endpoint = "https://news-visual.herokuapp.com/?topic=" + topic;
+```
+to 
+```js
+var endpoint = "http://0.0.0.0:5000/?topic=" + topic;
+```
+accesses the local api.<br>
+NOTE: Make sure to change to `http://` instead of `https://`
