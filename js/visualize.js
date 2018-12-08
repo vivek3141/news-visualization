@@ -116,7 +116,7 @@ function mouseClicked() {
 
 function draw() {
     background(255);
-    translate(400, 400);
+    translate(400, 60);
     for (i = 0; i < news.length; i++) {
         //Text size of the word depeding on importance
         let size = rel[i] * 5;
